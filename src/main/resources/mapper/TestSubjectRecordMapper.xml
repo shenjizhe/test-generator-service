@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2021-2099 the original author or authors.
+  ~
+  ~ @File: TestSubjectRecordMapper.xml
+  ~ @Author: JasonShen
+  ~ @Date: 2021-09-13 09:26:53
+  ~ @Email: thirdlucky@126.com
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bfec.testgenerator.testgenerator.mapper.TestSubjectRecordMapper">
+    <resultMap id="BaseResultMap" type="com.bfec.testgenerator.testgenerator.entity.TestSubjectRecord">
+        <!--@thirdlucky.code-factory generated on 2021-12-07 17:32:28.-->
+        <!--@Table component-->
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="subject_id" jdbcType="INTEGER" property="subjectId" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="format" jdbcType="VARCHAR" property="format" />
+        <result column="difficulty" jdbcType="INTEGER" property="difficulty" />
+        <result column="classify" jdbcType="INTEGER" property="classify" />
+        <result column="varibles" jdbcType="VARCHAR" property="varibles" />
+        <result column="answer" jdbcType="VARCHAR" property="answer" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@thirdlucky.code-factory generated on 2021-12-07 17:32:28.-->
+        id, subject_id, title, content, format, difficulty, classify, varibles, answer
+    </sql>
+</mapper>

@@ -1,0 +1,728 @@
+# 自动出题服务类图
+``` plantuml
+@startuml
+'https://plantuml.com/class-diagram
+namespace com.common.model #DDDDDD {
+abstract class BaseController{
++selectAll()
++selectCount()
++select()
++selectOne()
++exists()
++insert()
++delete()
++update()
++selectByIds()
++deleteByIds()
++insertList()
+}
+note left of BaseController
+控制器基类
+提供服务对外的 restful接口
+end note
+
+abstract class BaseService{
+
+}
+note left of BaseService
+服务基类
+提供业务逻辑封装
+end note
+
+interface MyMapper{
+
+}
+note left of MyMapper
+映射基类
+提供
+end note
+
+interface Mapper{
+select()
+update()
+delete()
+insert()
+}
+
+interface MySqlMapper{
+insertList()
+insertUseGeneratedKeys()
+}
+
+interface ConditionMapper{
+selectByCondition()
+selectCountByCondition()
+deleteByCondition()
+updateByCondition()
+updateByConditionSelective()
+}
+
+interface IdsMapper{
+selectByIds()
+deleteByIds()
+}
+
+interface ExampleMapper{
+selectByExample()
+selectOneByExample()
+selectCountByExample()
+deleteByExample()
+updateByExample()
+updateByExampleSelective()
+}
+
+class Result{
+ErrCode errCode
+String message:
+T data
+}
+note left of Result
+返回结果
+---
+errCode:
+0是正确状态，其他都是错误码
+参考 ErrorCode
+message:
+错误消息
+data:
+数据,json格式返回结果
+end note
+
+enum ErrorCode{
+Success
+Fail
+Unknown
+...
+}
+note left of ErrorCode
+错误码定义
+---
+Success 正确 0
+Fail 错误
+Unknown 未知结果
+end note
+
+BaseController-->BaseService:使用
+BaseService-->MyMapper:使用
+MyMapper--|>Mapper:继承
+MyMapper--|>MySqlMapper:继承
+MyMapper--|>ConditionMapper:继承
+MyMapper--|>IdsMapper:继承
+MyMapper--|>ExampleMapper:继承
+BaseController..>Result:依赖
+Result..>ErrorCode:依赖
+}
+
+namespace com.bfec.testgenerator.controller #5EFF7A {
+}
+namespace com.bfec.testgenerator.service #F6A7B1 {
+}
+namespace com.bfec.testgenerator.mapper #FFAF00 {
+}
+namespace com.bfec.testgenerator.entity #5B8AEF {
+}
+
+
+class com.bfec.testgenerator.controller.TestConfigController << (C,#01FF14) >>{
+        +batchSelect()
+        +batchInsert()
+        +batchDelete()
+        +singleInsert()
+        +singleUpdate()
+        +singleDelete()
+    }
+note top of com.bfec.testgenerator.controller.TestConfigController
+    配置控制器
+---
+            batchSelect():
+        批量查询
+            batchInsert():
+        批量添加
+            batchDelete():
+        批量删除
+            singleInsert():
+        添加
+            singleUpdate():
+        修改
+            singleDelete():
+        删除
+    end note
+class com.bfec.testgenerator.service.TestConfigService << (S,#FF1111) >>{
+}
+class com.bfec.testgenerator.mapper.TestConfigMapper << (M,#FFDC0D) >>{
+}
+class com.bfec.testgenerator.entity.TestConfig << (E,#0074D9) >>{
+            id:Integer
+            key:String
+            title:String
+            description:String
+            value:String
+    }
+note bottom of com.bfec.testgenerator.entity.TestConfig
+    配置
+---
+            id:
+        主键
+            key:
+        关键字
+            title:
+        标题
+            description:
+        描述
+            value:
+        值
+    end note
+
+com.bfec.testgenerator.controller.TestConfigController--|>com.common.model.BaseController
+com.bfec.testgenerator.service.TestConfigService--|>com.common.model.BaseService
+com.bfec.testgenerator.mapper.TestConfigMapper--|>com.common.model.MyMapper
+com.bfec.testgenerator.controller.TestConfigController-->com.bfec.testgenerator.service.TestConfigService
+com.bfec.testgenerator.service.TestConfigService-->com.bfec.testgenerator.mapper.TestConfigMapper
+com.bfec.testgenerator.mapper.TestConfigMapper-->com.bfec.testgenerator.entity.TestConfig
+
+
+class com.bfec.testgenerator.controller.TestExpressionController << (C,#01FF14) >>{
+        +batchSelect()
+        +batchInsert()
+        +batchDelete()
+        +singleInsert()
+        +singleUpdate()
+        +singleDelete()
+    }
+note top of com.bfec.testgenerator.controller.TestExpressionController
+    表达式控制器
+---
+            batchSelect():
+        批量查询
+            batchInsert():
+        批量添加
+            batchDelete():
+        批量删除
+            singleInsert():
+        添加
+            singleUpdate():
+        修改
+            singleDelete():
+        删除
+    end note
+class com.bfec.testgenerator.service.TestExpressionService << (S,#FF1111) >>{
+}
+class com.bfec.testgenerator.mapper.TestExpressionMapper << (M,#FFDC0D) >>{
+}
+class com.bfec.testgenerator.entity.TestExpression << (E,#0074D9) >>{
+            id:Long
+            content:String
+            result:String
+            index:String
+    }
+note bottom of com.bfec.testgenerator.entity.TestExpression
+    表达式
+---
+            id:
+        主键
+            content:
+        内容
+            result:
+        结果
+            index:
+        索引
+    end note
+
+com.bfec.testgenerator.controller.TestExpressionController--|>com.common.model.BaseController
+com.bfec.testgenerator.service.TestExpressionService--|>com.common.model.BaseService
+com.bfec.testgenerator.mapper.TestExpressionMapper--|>com.common.model.MyMapper
+com.bfec.testgenerator.controller.TestExpressionController-->com.bfec.testgenerator.service.TestExpressionService
+com.bfec.testgenerator.service.TestExpressionService-->com.bfec.testgenerator.mapper.TestExpressionMapper
+com.bfec.testgenerator.mapper.TestExpressionMapper-->com.bfec.testgenerator.entity.TestExpression
+
+
+class com.bfec.testgenerator.controller.TestFormulaController << (C,#01FF14) >>{
+        +batchSelect()
+        +batchInsert()
+        +batchDelete()
+        +singleInsert()
+        +singleUpdate()
+        +singleDelete()
+    }
+note top of com.bfec.testgenerator.controller.TestFormulaController
+    算法控制器
+---
+            batchSelect():
+        批量查询
+            batchInsert():
+        批量添加
+            batchDelete():
+        批量删除
+            singleInsert():
+        添加
+            singleUpdate():
+        修改
+            singleDelete():
+        删除
+    end note
+class com.bfec.testgenerator.service.TestFormulaService << (S,#FF1111) >>{
+}
+class com.bfec.testgenerator.mapper.TestFormulaMapper << (M,#FFDC0D) >>{
+}
+class com.bfec.testgenerator.entity.TestFormula << (E,#0074D9) >>{
+            id:Long
+            key:String
+            code:String
+            expression:String
+            type:Integer
+    }
+note bottom of com.bfec.testgenerator.entity.TestFormula
+    算法
+---
+            id:
+        主键
+            key:
+        关键词
+            code:
+        代码
+            expression:
+        表达式
+            type:
+        算法类型
+    end note
+
+com.bfec.testgenerator.controller.TestFormulaController--|>com.common.model.BaseController
+com.bfec.testgenerator.service.TestFormulaService--|>com.common.model.BaseService
+com.bfec.testgenerator.mapper.TestFormulaMapper--|>com.common.model.MyMapper
+com.bfec.testgenerator.controller.TestFormulaController-->com.bfec.testgenerator.service.TestFormulaService
+com.bfec.testgenerator.service.TestFormulaService-->com.bfec.testgenerator.mapper.TestFormulaMapper
+com.bfec.testgenerator.mapper.TestFormulaMapper-->com.bfec.testgenerator.entity.TestFormula
+
+
+class com.bfec.testgenerator.controller.TestOptionController << (C,#01FF14) >>{
+        +batchSelect()
+        +batchInsert()
+        +batchDelete()
+        +singleInsert()
+        +singleUpdate()
+        +singleDelete()
+    }
+note top of com.bfec.testgenerator.controller.TestOptionController
+    可选项参数控制器
+---
+            batchSelect():
+        批量查询
+            batchInsert():
+        批量添加
+            batchDelete():
+        批量删除
+            singleInsert():
+        添加
+            singleUpdate():
+        修改
+            singleDelete():
+        删除
+    end note
+class com.bfec.testgenerator.service.TestOptionService << (S,#FF1111) >>{
+}
+class com.bfec.testgenerator.mapper.TestOptionMapper << (M,#FFDC0D) >>{
+}
+class com.bfec.testgenerator.entity.TestOption << (E,#0074D9) >>{
+            id:Long
+            correct:Boolean
+            expression:String
+    }
+note bottom of com.bfec.testgenerator.entity.TestOption
+    可选项参数
+---
+            id:
+        主键
+            correct:
+        是否正确
+            expression:
+        表达式
+    end note
+
+com.bfec.testgenerator.controller.TestOptionController--|>com.common.model.BaseController
+com.bfec.testgenerator.service.TestOptionService--|>com.common.model.BaseService
+com.bfec.testgenerator.mapper.TestOptionMapper--|>com.common.model.MyMapper
+com.bfec.testgenerator.controller.TestOptionController-->com.bfec.testgenerator.service.TestOptionService
+com.bfec.testgenerator.service.TestOptionService-->com.bfec.testgenerator.mapper.TestOptionMapper
+com.bfec.testgenerator.mapper.TestOptionMapper-->com.bfec.testgenerator.entity.TestOption
+
+
+class com.bfec.testgenerator.controller.TestOptionRecordController << (C,#01FF14) >>{
+        +batchSelect()
+        +batchInsert()
+        +batchDelete()
+        +singleInsert()
+        +singleUpdate()
+        +singleDelete()
+    }
+note top of com.bfec.testgenerator.controller.TestOptionRecordController
+    可选项记录控制器
+---
+            batchSelect():
+        批量查询
+            batchInsert():
+        批量添加
+            batchDelete():
+        批量删除
+            singleInsert():
+        添加
+            singleUpdate():
+        修改
+            singleDelete():
+        删除
+    end note
+class com.bfec.testgenerator.service.TestOptionRecordService << (S,#FF1111) >>{
+}
+class com.bfec.testgenerator.mapper.TestOptionRecordMapper << (M,#FFDC0D) >>{
+}
+class com.bfec.testgenerator.entity.TestOptionRecord << (E,#0074D9) >>{
+            id:Long
+            option_id:Long
+            record_id:Long
+            content:String
+    }
+note bottom of com.bfec.testgenerator.entity.TestOptionRecord
+    可选项记录
+---
+            id:
+        主键
+            option_id:
+        选项ID
+            record_id:
+        记录ID
+            content:
+        内容
+    end note
+
+com.bfec.testgenerator.controller.TestOptionRecordController--|>com.common.model.BaseController
+com.bfec.testgenerator.service.TestOptionRecordService--|>com.common.model.BaseService
+com.bfec.testgenerator.mapper.TestOptionRecordMapper--|>com.common.model.MyMapper
+com.bfec.testgenerator.controller.TestOptionRecordController-->com.bfec.testgenerator.service.TestOptionRecordService
+com.bfec.testgenerator.service.TestOptionRecordService-->com.bfec.testgenerator.mapper.TestOptionRecordMapper
+com.bfec.testgenerator.mapper.TestOptionRecordMapper-->com.bfec.testgenerator.entity.TestOptionRecord
+
+
+class com.bfec.testgenerator.controller.TestParameterController << (C,#01FF14) >>{
+        +batchSelect()
+        +batchInsert()
+        +batchDelete()
+        +singleInsert()
+        +singleUpdate()
+        +singleDelete()
+    }
+note top of com.bfec.testgenerator.controller.TestParameterController
+    参数控制器
+---
+            batchSelect():
+        批量查询
+            batchInsert():
+        批量添加
+            batchDelete():
+        批量删除
+            singleInsert():
+        添加
+            singleUpdate():
+        修改
+            singleDelete():
+        删除
+    end note
+class com.bfec.testgenerator.service.TestParameterService << (S,#FF1111) >>{
+}
+class com.bfec.testgenerator.mapper.TestParameterMapper << (M,#FFDC0D) >>{
+}
+class com.bfec.testgenerator.entity.TestParameter << (E,#0074D9) >>{
+            id:Long
+            key:String
+            code:String
+            description:String
+            type:String
+            globle:Boolean
+    }
+note bottom of com.bfec.testgenerator.entity.TestParameter
+    参数
+---
+            id:
+        主键
+            key:
+        关键字
+            code:
+        代码
+            description:
+        描述
+            type:
+        参数类型
+            globle:
+        是否全局
+    end note
+
+com.bfec.testgenerator.controller.TestParameterController--|>com.common.model.BaseController
+com.bfec.testgenerator.service.TestParameterService--|>com.common.model.BaseService
+com.bfec.testgenerator.mapper.TestParameterMapper--|>com.common.model.MyMapper
+com.bfec.testgenerator.controller.TestParameterController-->com.bfec.testgenerator.service.TestParameterService
+com.bfec.testgenerator.service.TestParameterService-->com.bfec.testgenerator.mapper.TestParameterMapper
+com.bfec.testgenerator.mapper.TestParameterMapper-->com.bfec.testgenerator.entity.TestParameter
+
+
+class com.bfec.testgenerator.controller.TestQuestionRecordController << (C,#01FF14) >>{
+        +batchSelect()
+        +batchInsert()
+        +batchDelete()
+        +singleInsert()
+        +singleUpdate()
+        +singleDelete()
+    }
+note top of com.bfec.testgenerator.controller.TestQuestionRecordController
+    题目问题记录控制器
+---
+            batchSelect():
+        批量查询
+            batchInsert():
+        批量添加
+            batchDelete():
+        批量删除
+            singleInsert():
+        添加
+            singleUpdate():
+        修改
+            singleDelete():
+        删除
+    end note
+class com.bfec.testgenerator.service.TestQuestionRecordService << (S,#FF1111) >>{
+}
+class com.bfec.testgenerator.mapper.TestQuestionRecordMapper << (M,#FFDC0D) >>{
+}
+class com.bfec.testgenerator.entity.TestQuestionRecord << (E,#0074D9) >>{
+            id:Long
+            subject_id:Integer
+            title:String
+            content:String
+            code:String
+            difficulty:Integer
+            classify:Integer
+            varibles:String
+            answer:String
+    }
+note bottom of com.bfec.testgenerator.entity.TestQuestionRecord
+    题目问题记录
+---
+            id:
+        记录主键
+            subject_id:
+        题目主键
+            title:
+        标题
+            content:
+        内容
+            code:
+        代码
+            difficulty:
+        难度
+            classify:
+        分类
+            varibles:
+        值列表
+            answer:
+        答案
+    end note
+
+com.bfec.testgenerator.controller.TestQuestionRecordController--|>com.common.model.BaseController
+com.bfec.testgenerator.service.TestQuestionRecordService--|>com.common.model.BaseService
+com.bfec.testgenerator.mapper.TestQuestionRecordMapper--|>com.common.model.MyMapper
+com.bfec.testgenerator.controller.TestQuestionRecordController-->com.bfec.testgenerator.service.TestQuestionRecordService
+com.bfec.testgenerator.service.TestQuestionRecordService-->com.bfec.testgenerator.mapper.TestQuestionRecordMapper
+com.bfec.testgenerator.mapper.TestQuestionRecordMapper-->com.bfec.testgenerator.entity.TestQuestionRecord
+
+
+class com.bfec.testgenerator.controller.TestResultRecordController << (C,#01FF14) >>{
+        +batchSelect()
+        +batchInsert()
+        +batchDelete()
+        +singleInsert()
+        +singleUpdate()
+        +singleDelete()
+    }
+note top of com.bfec.testgenerator.controller.TestResultRecordController
+    答题记录控制器
+---
+            batchSelect():
+        批量查询
+            batchInsert():
+        批量添加
+            batchDelete():
+        批量删除
+            singleInsert():
+        添加
+            singleUpdate():
+        修改
+            singleDelete():
+        删除
+    end note
+class com.bfec.testgenerator.service.TestResultRecordService << (S,#FF1111) >>{
+}
+class com.bfec.testgenerator.mapper.TestResultRecordMapper << (M,#FFDC0D) >>{
+}
+class com.bfec.testgenerator.entity.TestResultRecord << (E,#0074D9) >>{
+            id:Long
+            subject_id:Long
+            result_id:Long
+    }
+note bottom of com.bfec.testgenerator.entity.TestResultRecord
+    答题记录
+---
+            id:
+        主键
+            subject_id:
+        题目ID
+            result_id:
+        结果ID
+    end note
+
+com.bfec.testgenerator.controller.TestResultRecordController--|>com.common.model.BaseController
+com.bfec.testgenerator.service.TestResultRecordService--|>com.common.model.BaseService
+com.bfec.testgenerator.mapper.TestResultRecordMapper--|>com.common.model.MyMapper
+com.bfec.testgenerator.controller.TestResultRecordController-->com.bfec.testgenerator.service.TestResultRecordService
+com.bfec.testgenerator.service.TestResultRecordService-->com.bfec.testgenerator.mapper.TestResultRecordMapper
+com.bfec.testgenerator.mapper.TestResultRecordMapper-->com.bfec.testgenerator.entity.TestResultRecord
+
+
+class com.bfec.testgenerator.controller.TestSubjectController << (C,#01FF14) >>{
+        +batchSelect()
+        +batchInsert()
+        +batchDelete()
+        +singleInsert()
+        +singleUpdate()
+        +singleDelete()
+    }
+note top of com.bfec.testgenerator.controller.TestSubjectController
+    题目控制器
+---
+            batchSelect():
+        批量查询
+            batchInsert():
+        批量添加
+            batchDelete():
+        批量删除
+            singleInsert():
+        添加
+            singleUpdate():
+        修改
+            singleDelete():
+        删除
+    end note
+class com.bfec.testgenerator.service.TestSubjectService << (S,#FF1111) >>{
+}
+class com.bfec.testgenerator.mapper.TestSubjectMapper << (M,#FFDC0D) >>{
+}
+class com.bfec.testgenerator.entity.TestSubject << (E,#0074D9) >>{
+            id:Long
+            code:String
+            title:String
+            content:String
+            format:String
+            difficulty:Integer
+            classify:Integer
+            version:String
+            finger_print:String
+    }
+note bottom of com.bfec.testgenerator.entity.TestSubject
+    题目
+---
+            id:
+        主键
+            code:
+        代码
+            title:
+        标题
+            content:
+        内容
+            format:
+        格式
+            difficulty:
+        难度
+            classify:
+        分类
+            version:
+        版本
+            finger_print:
+        文件指纹
+    end note
+
+com.bfec.testgenerator.controller.TestSubjectController--|>com.common.model.BaseController
+com.bfec.testgenerator.service.TestSubjectService--|>com.common.model.BaseService
+com.bfec.testgenerator.mapper.TestSubjectMapper--|>com.common.model.MyMapper
+com.bfec.testgenerator.controller.TestSubjectController-->com.bfec.testgenerator.service.TestSubjectService
+com.bfec.testgenerator.service.TestSubjectService-->com.bfec.testgenerator.mapper.TestSubjectMapper
+com.bfec.testgenerator.mapper.TestSubjectMapper-->com.bfec.testgenerator.entity.TestSubject
+
+
+class com.bfec.testgenerator.controller.TestSubjectRecordController << (C,#01FF14) >>{
+        +batchSelect()
+        +batchInsert()
+        +batchDelete()
+        +singleInsert()
+        +singleUpdate()
+        +singleDelete()
+    }
+note top of com.bfec.testgenerator.controller.TestSubjectRecordController
+    题目记录控制器
+---
+            batchSelect():
+        批量查询
+            batchInsert():
+        批量添加
+            batchDelete():
+        批量删除
+            singleInsert():
+        添加
+            singleUpdate():
+        修改
+            singleDelete():
+        删除
+    end note
+class com.bfec.testgenerator.service.TestSubjectRecordService << (S,#FF1111) >>{
+}
+class com.bfec.testgenerator.mapper.TestSubjectRecordMapper << (M,#FFDC0D) >>{
+}
+class com.bfec.testgenerator.entity.TestSubjectRecord << (E,#0074D9) >>{
+            id:Long
+            subject_id:Integer
+            title:String
+            content:String
+            format:String
+            difficulty:Integer
+            classify:Integer
+            varibles:String
+            answer:String
+    }
+note bottom of com.bfec.testgenerator.entity.TestSubjectRecord
+    题目记录
+---
+            id:
+        记录主键
+            subject_id:
+        题目主键
+            title:
+        标题
+            content:
+        内容
+            format:
+        格式
+            difficulty:
+        难度
+            classify:
+        分类
+            varibles:
+        值列表
+            answer:
+        答案
+    end note
+
+com.bfec.testgenerator.controller.TestSubjectRecordController--|>com.common.model.BaseController
+com.bfec.testgenerator.service.TestSubjectRecordService--|>com.common.model.BaseService
+com.bfec.testgenerator.mapper.TestSubjectRecordMapper--|>com.common.model.MyMapper
+com.bfec.testgenerator.controller.TestSubjectRecordController-->com.bfec.testgenerator.service.TestSubjectRecordService
+com.bfec.testgenerator.service.TestSubjectRecordService-->com.bfec.testgenerator.mapper.TestSubjectRecordMapper
+com.bfec.testgenerator.mapper.TestSubjectRecordMapper-->com.bfec.testgenerator.entity.TestSubjectRecord
+
+
+@enduml
+```

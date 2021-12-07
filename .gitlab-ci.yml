@@ -1,0 +1,53 @@
+stages:
+    - get_code
+    - mvn_code
+    - deploy_code
+# 拉取代码
+get_code:
+    variables:
+        path: "/usr/local/services/gitroot/"
+        fpath: "/usr/local/services/gitroot/test-generator-service/"
+    stage: get_code
+    script:
+        - if [ ! -d "$path" ];then
+        - mkdir "$path"
+        - fi
+        - cd "$path"
+        - if [ ! -d "$fpath" ];then
+        - git clone ssh://git@172.17.14.166:2222/test-group/test-generator-service.git
+        - cd "$fpath"
+        - else
+        - cd "$fpath"
+        - git pull origin master
+        - fi
+# 编译代码
+mvn_code:
+    variables:
+        path: "/usr/local/services/gitroot/"
+        fpath: "/usr/local/services/gitroot/test-generator-service/"
+    stage: mvn_code
+    script:
+        - cd "$fpath"
+        - mvn clean package
+# 部署代码
+deploy_code:
+    variables:
+        fpath: "/usr/local/services/gitroot/test-generator-service/"
+        tpath: "/usr/local/services//test-generator-service/"
+        app: test-generator-service
+        ip: 172.17.14.179
+    stage: mvn_code
+    script:
+        - ssh root@${ip}  << EOF
+        - if [ ! -d "tpath" ];then
+        - mkdir ${tpath}
+        - fi
+        - EOF
+        - cd "$fpath"
+        - scp ./target/${app}.jar root@${ip}:${tpath}${app}.jar
+        - scp ${app} root@${ip}:${tpath}${app}
+        - ssh root@${ip}  << EOF
+        - cd ${tpath}
+        - chmod 777 ${app}
+        - ./${app} restart
+        - EOF
