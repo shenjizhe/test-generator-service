@@ -3,7 +3,7 @@
  *
  * @File: TestConfig.java
  * @Author: JasonShen
- * @Date: 2021-12-07 17:32:28
+ * @Date: 2021-12-10 09:16:29
  * @Email: thirdlucky@126.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,14 +33,14 @@ import lombok.EqualsAndHashCode;
  * 配置 实体
  *
  * @author shenjizhe
- * @data: 2021-12-07 17:32:28
+ * @data: 2021-12-10 09:16:29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "TestConfig", description = "配置")
 @Table(name = "test_config")
 public class TestConfig {
-    private static final long serialVersionUID = 6278521136969105281L;
+    private static final long serialVersionUID = 3157488981250183552L;
 
     /**
      * 主键

@@ -36,4 +36,24 @@ public interface MyMapper<T>
         ConditionMapper<T>,
         IdsMapper<T>,
         ExampleMapper<T> {
+ /**
+ * 插入并返回生成的主键
+ *
+ * @param record 插入的对象
+ * @return
+ */
+ default T insertWithKey(T record) {
+  try {
+   int insert = insert(record);
+   if (insert == 0) {
+    return null;
+   } else {
+    T t = selectOne(record);
+    return t;
+   }
+  } catch (Exception e) {
+   e.printStackTrace();
+   return null;
+  }
+ }
 }

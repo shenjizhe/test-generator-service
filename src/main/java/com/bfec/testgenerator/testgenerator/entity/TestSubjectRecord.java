@@ -3,7 +3,7 @@
  *
  * @File: TestSubjectRecord.java
  * @Author: JasonShen
- * @Date: 2021-12-07 17:32:28
+ * @Date: 2021-12-10 09:16:29
  * @Email: thirdlucky@126.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,14 +33,14 @@ import lombok.EqualsAndHashCode;
  * 题目记录 实体
  *
  * @author shenjizhe
- * @data: 2021-12-07 17:32:28
+ * @data: 2021-12-10 09:16:29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "TestSubjectRecord", description = "题目记录")
 @Table(name = "test_subject_record")
 public class TestSubjectRecord {
-    private static final long serialVersionUID = 5832269322252180035L;
+    private static final long serialVersionUID = 2231528243165946515L;
 
     /**
      * 记录主键

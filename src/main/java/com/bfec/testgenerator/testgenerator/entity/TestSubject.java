@@ -3,7 +3,7 @@
  *
  * @File: TestSubject.java
  * @Author: JasonShen
- * @Date: 2021-12-07 17:32:28
+ * @Date: 2021-12-10 09:16:29
  * @Email: thirdlucky@126.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,14 +33,14 @@ import lombok.EqualsAndHashCode;
  * 题目 实体
  *
  * @author shenjizhe
- * @data: 2021-12-07 17:32:28
+ * @data: 2021-12-10 09:16:29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "TestSubject", description = "题目")
 @Table(name = "test_subject")
 public class TestSubject {
-    private static final long serialVersionUID = 8447839111615297635L;
+    private static final long serialVersionUID = 4979587794939645400L;
 
     /**
      * 主键

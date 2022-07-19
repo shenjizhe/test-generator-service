@@ -3,7 +3,7 @@
  *
  * @File: TestExpression.java
  * @Author: JasonShen
- * @Date: 2021-12-07 17:32:28
+ * @Date: 2021-12-10 09:16:29
  * @Email: thirdlucky@126.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,14 +33,14 @@ import lombok.EqualsAndHashCode;
  * 表达式 实体
  *
  * @author shenjizhe
- * @data: 2021-12-07 17:32:28
+ * @data: 2021-12-10 09:16:29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "TestExpression", description = "表达式")
 @Table(name = "test_expression")
 public class TestExpression {
-    private static final long serialVersionUID = 4053114349686267515L;
+    private static final long serialVersionUID = 8406190761497799308L;
 
     /**
      * 主键

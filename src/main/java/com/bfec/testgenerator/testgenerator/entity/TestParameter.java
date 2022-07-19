@@ -3,7 +3,7 @@
  *
  * @File: TestParameter.java
  * @Author: JasonShen
- * @Date: 2021-12-07 17:32:28
+ * @Date: 2021-12-10 09:16:29
  * @Email: thirdlucky@126.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,14 +33,14 @@ import lombok.EqualsAndHashCode;
  * 参数 实体
  *
  * @author shenjizhe
- * @data: 2021-12-07 17:32:28
+ * @data: 2021-12-10 09:16:29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "TestParameter", description = "参数")
 @Table(name = "test_parameter")
 public class TestParameter {
-    private static final long serialVersionUID = 279068964312609L;
+    private static final long serialVersionUID = 7561273392426100013L;
 
     /**
      * 主键

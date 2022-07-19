@@ -23,7 +23,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bfec.testgenerator.testgenerator.mapper.TestSubjectMapper">
     <resultMap id="BaseResultMap" type="com.bfec.testgenerator.testgenerator.entity.TestSubject">
-        <!--@thirdlucky.code-factory generated on 2021-12-07 17:32:28.-->
+        <!--@thirdlucky.code-factory generated on 2021-12-10 09:16:29.-->
         <!--@Table component-->
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="code" jdbcType="VARCHAR" property="code" />
@@ -36,7 +36,7 @@
         <result column="finger_print" jdbcType="VARCHAR" property="fingerPrint" />
     </resultMap>
     <sql id="Base_Column_List">
-        <!--@thirdlucky.code-factory generated on 2021-12-07 17:32:28.-->
+        <!--@thirdlucky.code-factory generated on 2021-12-10 09:16:29.-->
         id, code, title, content, format, difficulty, classify, version, finger_print
     </sql>
 </mapper>

@@ -23,7 +23,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bfec.testgenerator.testgenerator.mapper.TestConfigMapper">
     <resultMap id="BaseResultMap" type="com.bfec.testgenerator.testgenerator.entity.TestConfig">
-        <!--@thirdlucky.code-factory generated on 2021-12-07 17:32:28.-->
+        <!--@thirdlucky.code-factory generated on 2021-12-10 09:16:29.-->
         <!--@Table component-->
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="key" jdbcType="VARCHAR" property="key" />
@@ -32,7 +32,7 @@
         <result column="value" jdbcType="VARCHAR" property="value" />
     </resultMap>
     <sql id="Base_Column_List">
-        <!--@thirdlucky.code-factory generated on 2021-12-07 17:32:28.-->
+        <!--@thirdlucky.code-factory generated on 2021-12-10 09:16:29.-->
         id, key, title, description, value
     </sql>
 </mapper>

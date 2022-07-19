@@ -3,7 +3,7 @@
  *
  * @File: TestOption.java
  * @Author: JasonShen
- * @Date: 2021-12-07 17:32:28
+ * @Date: 2021-12-10 09:16:29
  * @Email: thirdlucky@126.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,14 +33,14 @@ import lombok.EqualsAndHashCode;
  * 可选项参数 实体
  *
  * @author shenjizhe
- * @data: 2021-12-07 17:32:28
+ * @data: 2021-12-10 09:16:29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value = "TestOption", description = "可选项参数")
 @Table(name = "test_option")
 public class TestOption {
-    private static final long serialVersionUID = 7834178320322010494L;
+    private static final long serialVersionUID = 3293711339808583383L;
 
     /**
      * 主键
