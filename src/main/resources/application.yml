@@ -16,7 +16,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
 #        TODO： 修改数据库地址如： 192.168.2.123:3306
-        url: jdbc:mysql://XX.XX.XX.XX:3306/test_generator?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong
+        url: jdbc:mysql://39.105.65.251:3308/test_generator?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong
         username: root
         password: 123456
         hikari:
